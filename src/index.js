@@ -1,13 +1,12 @@
 import "./styles/style.css";
-import { openSidebar, closeSidebar } from "./js/dom/sidebar";
+import { toggleSidebar} from "./js/dom/sidebar";
 // const { date } = require("date-fns/locale");
 import Todo from "./js/classes/todo";
 import Project from "./js/classes/project";
 import ProjectBoard from "./js/classes/projectBoard";
-import card from "./js/dom/card";
-import project from "./js/dom/project";
+import card from "./js/dom/add-card";
+import {addForm} from "./js/dom/add-project";
 import removeProject from "./js/dom/delete-project";
-import removeCard from "./js/dom/delete-card.js";
 
 let addCard = document.querySelectorAll(".new");
 
@@ -19,7 +18,7 @@ addCard.forEach((button) => {
 
 let addSection = document.querySelector(".add-project");
 addSection.addEventListener("click", () => {
-  project();
+  addForm();
 });
 
 let deleteProject = document.querySelectorAll(".delete");
@@ -29,23 +28,9 @@ deleteProject.forEach((button) => {
   });
 });
 
-let deleteCard = document.querySelectorAll(".done");
-deleteCard.forEach((button) => {
-  button.addEventListener("click", () => {
-    removeCard();
-  });
-});
-
-let clickCard = document.querySelectorAll(".card");
-clickCard.forEach((button) => {
-  button.addEventListener("click", () => {
-    openSidebar();
-  });
-});
-
-let clickArrow = document.querySelector(".arrow");
+let clickArrow = document.querySelector(".close");
 clickArrow.addEventListener("click", () => {
-  closeSidebar();
+  toggleSidebar();
 });
 
 let testProjectBoard = () => {
@@ -80,6 +65,6 @@ let testTodo = (todo) => {
   console.log(todo);
 };
 
-testProjectBoard();
-let todo = testProject();
-testTodo(todo);
+// testProjectBoard();
+// let todo = testProject();
+// testTodo(todo);

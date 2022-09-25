@@ -20,6 +20,7 @@ body {
     color: var(--main-font-color);
     font-size: 14px;
     line-height: 1.5;
+    user-select: none;
 }
 
 /* General Styles */
@@ -27,8 +28,19 @@ a {
     text-decoration: none;
 }
 
+input {
+    background-color: transparent;
+    border: inherit;
+    outline: none;
+    color: var(--secondary-font-color);
+}
+
 .shadow {
     box-shadow: rgb(15 15 15 / 10%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 2px 4px;
+}
+
+.hidden {
+    display: none;
 }
 
 /* Hover Styling */
@@ -91,13 +103,13 @@ img {
 .add-project {
     margin: 4px;
     width: 260px;
-    padding: 6px;
     background-color: var(--section-background-color);
     height: fit-content;
     border-radius: 4px;
+    padding: 6px;
 }
 
-.header {
+.header, .project-form {
     display: grid;
     grid-template-columns: 1fr 24px;
 }
@@ -111,7 +123,13 @@ img {
     background-color: var(--card-background-color);
 }
 
-.delete {
+.header-input {
+    padding: 0px 6px;
+    margin: 4px;
+    margin-bottom: 8px;
+}
+
+.delete, .submit {
     height: 24px;
     align-self: center;
     margin-bottom: 4px;
@@ -154,13 +172,15 @@ img {
 .new,
 .add-project {
     align-items: center;
-    display: flex;
     gap: 4px;
     margin-top: 4px;
-    padding: 6px 0px 6px 6px;
     color: var(--secondary-font-color);
 }
 
+.new {
+    padding: 6px 0px 6px 6px;
+    display: flex;
+}
 /* Footer */
 .footer {
     display: flex;
@@ -180,8 +200,6 @@ img {
     right: 0px;
     bottom: 0px;
     width: 430px;
-    display: none;
-    /* remove above to unhide sidebar */
 }
 
 .sidebar {
