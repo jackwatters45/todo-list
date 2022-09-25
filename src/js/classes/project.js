@@ -24,7 +24,7 @@ export default class Project {
     this.todos.push(newTodo);
   }
 
-  removeTodo(todoToRemove) {
+  removeTodoFromProject(todoToRemove) {
     let index = this.todos.findIndex((element) => element === todoToRemove);
     this.todos.splice(index, 1);
   }

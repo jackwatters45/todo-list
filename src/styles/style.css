@@ -44,6 +44,10 @@ input {
     display: none;
 }
 
+h1 {
+    padding: 10px 0px;
+}
+
 /* Hover Styling */
 .done:hover,
 .new:hover,

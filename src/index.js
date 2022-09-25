@@ -1,6 +1,6 @@
 import "./styles/style.css";
 import ProjectBoard from "./js/classes/projectBoard";
-import { addForm } from "./js/dom/add-project";
+import { addForm } from "./js/functions/add-project";
 
 let projectBoard = new ProjectBoard();
 
