@@ -180,7 +180,8 @@ img {
     right: 0px;
     bottom: 0px;
     width: 430px;
-    /* display: none; */
+    display: none;
+    /* remove above to unhide sidebar */
 }
 
 .sidebar {
