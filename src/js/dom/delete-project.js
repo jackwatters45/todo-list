@@ -1,5 +1,7 @@
-export default function deleteProject() {
-  // how to make it work on specific section
-  let project = document.querySelector(".section");
-  project.remove();
+export default function deleteProject(project, projectBoard) {
+  // remove section from dom
+  let section = document.querySelector(`#${project.name}`)
+  section.remove()
+  // remove project from projectBoard
+  projectBoard.removeProjectFromBoard(project.name)
 }

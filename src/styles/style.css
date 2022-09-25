@@ -35,6 +35,7 @@ input {
     color: var(--secondary-font-color);
 }
 
+
 .shadow {
     box-shadow: rgb(15 15 15 / 10%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 2px 4px;
 }
@@ -46,7 +47,9 @@ input {
 /* Hover Styling */
 .done:hover,
 .new:hover,
-.add-project:hover, .delete:hover, .close:hover {
+.add-project:hover,
+.delete:hover,
+.close:hover {
     background-color: rgba(255, 255, 255, 0.055);
     border-radius: 4px;
 }
@@ -56,7 +59,12 @@ input {
 }
 
 /* Cursor */
-.close, .new, .add-project, .card, .delete, a {
+.close,
+.new,
+.add-project,
+.card,
+.delete,
+a {
     cursor: pointer;
 }
 
@@ -109,7 +117,9 @@ img {
     padding: 6px;
 }
 
-.header, .project-form {
+.header,
+.project-form,
+#todo-form {
     display: grid;
     grid-template-columns: 1fr 24px;
 }
@@ -129,12 +139,29 @@ img {
     margin-bottom: 8px;
 }
 
-.delete, .submit {
+.delete,
+.submit {
     height: 24px;
     align-self: center;
     margin-bottom: 4px;
     display: flex;
     justify-content: center;
+}
+
+.submit-card {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    height: 21px;
+    visibility: hidden;
+}
+
+input.submit {
+    visibility: hidden;
+}
+
+#todo-form {
+    cursor: text;
 }
 
 .cards {
@@ -181,6 +208,7 @@ img {
     padding: 6px 0px 6px 6px;
     display: flex;
 }
+
 /* Footer */
 .footer {
     display: flex;
@@ -235,7 +263,8 @@ img {
     color: var(--main-font-color);
 }
 
-.property, .value {
+.property,
+.value {
     display: flex;
     align-items: center;
     gap: 8px;

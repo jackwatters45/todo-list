@@ -1,22 +1,22 @@
 export default class ProjectBoard {
-    constructor() {
-      this.projects = [];
-    }
-  
-    // Getter
-    getProjects() {
-      return this.projects;
-    }
-  
-    // Methods
-    addProject(project) {
-      this.projects.push(project);
-    }
-  
-    removeProject(projectToRemove) {
-      let index = this.projects.findIndex(
-        (element) => element === projectToRemove
-      );
-      this.projects.splice(index, 1);
-    }
+  constructor() {
+    this.projects = [];
   }
+
+  // Getter
+  getProjects() {
+    return this.projects;
+  }
+
+  // Methods
+  addProjectToBoard(project) {
+    this.projects.push(project);
+  }
+
+  removeProjectFromBoard(projectToRemove) {
+    let index = this.projects.findIndex(
+      (element) => element === projectToRemove
+    );
+    this.projects.splice(index, 1);
+  }
+}

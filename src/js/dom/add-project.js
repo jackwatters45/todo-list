@@ -1,11 +1,11 @@
 import trash from "../../assets/img/trash.svg";
 import plus from "../../assets/img/plus.svg";
 import deleteProject from "./delete-project";
-import newCard from "./add-card"
-import submit from "../../assets/img/submit.svg"
+import newCard from "./add-card";
+import submit from "../../assets/img/submit.svg";
 import Project from "../classes/project";
 
-export function addForm() {
+export function addForm(projectBoard) {
   let sections = document.querySelector(".sections");
 
   // Create actual project column
@@ -15,25 +15,25 @@ export function addForm() {
   // add form html
   let header = document.createElement("form");
   header.classList.add("project-form");
-  header.id = 'project-form'
+  header.id = "project-form";
 
   let headerTitle = document.createElement("div");
   headerTitle.classList.add("header-input");
 
-  let input = document.createElement('input')
-  input.placeholder = 'New Project';
-  input.type = 'text';
+  let input = document.createElement("input");
+  input.placeholder = "Name your project...";
+  input.type = "text";
   input.required = true;
-  input.classList.add('input')
-  headerTitle.appendChild(input)
+  input.classList.add("input");
+  headerTitle.appendChild(input);
   header.appendChild(headerTitle);
 
   let submitElement = document.createElement("input");
   submitElement.classList.add("submit");
-  submitElement.type = 'image'
-  submitElement.style.width = '16px'
+  submitElement.type = "image";
+  submitElement.style.width = "16px";
   submitElement.src = submit;
-  submitElement.name = "project-name"
+  submitElement.name = "project-name";
   submitElement.alt = "Submit Button";
 
   // add elements
@@ -41,31 +41,34 @@ export function addForm() {
   section.appendChild(header);
   sections.appendChild(section);
 
-  header.addEventListener('submit', () => {
+  header.addEventListener("submit", () => {
     // get form input
-    let projectName = document.forms["project-form"].querySelector(".input").value
+    let projectName =
+      document.forms["project-form"].querySelector(".input").value;
     // create new project object
     let project = new Project(projectName);
+    // add project to project board
+    projectBoard.addProjectToBoard(project);
     // create new project column (dom)
-    addProject(project, section)
-  })
+    addProject(project, projectBoard);
+    // remove form
+    section.remove();
+  });
 }
 
-export function addProject(project, form) {
-  // remove form
-  form.remove()
-
+export function addProject(project, projectBoard) {
   let sections = document.querySelector(".sections");
 
   let section = document.createElement("div");
   section.classList.add("section");
+  section.id = project.name;
 
   let header = document.createElement("div");
   header.classList.add("header");
 
   let headerTitle = document.createElement("div");
   headerTitle.classList.add("header-title");
-  headerTitle.innerHTML = project.name
+  headerTitle.innerHTML = project.name;
 
   header.appendChild(headerTitle);
 
@@ -95,16 +98,13 @@ export function addProject(project, form) {
   newElement.innerHTML += "New";
 
   section.appendChild(newElement);
+  sections.appendChild(section);
 
   deleteElement.addEventListener("click", () => {
-    deleteProject();
+    deleteProject(project, projectBoard);
   });
 
-  newElement.addEventListener('click', () => {
-    newCard(section);
-    // newCard(project);
-  })
-
-  sections.appendChild(section);
+  newElement.addEventListener("click", () => {
+    newCard(project, projectBoard);
+  });
 }
-
