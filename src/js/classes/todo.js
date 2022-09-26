@@ -7,10 +7,11 @@ export default class Todo {
       notes = undefined
     ) {
       this.title = title;
+      this.id = title.replace(/[^a-zA-Z0-9 ]/g, "").replace(/\s+/g, "-");
       this.priority = priority;
       this.date = date;
       this.notes = notes;
-      this.done = false;
+      this.isDone = false;
     }
     // getters
     getTitle() {
@@ -30,7 +31,7 @@ export default class Todo {
     }
   
     getDone() {
-      return this.done;
+      return this.isDone;
     }
   
     // Setters
@@ -51,7 +52,7 @@ export default class Todo {
     }
   
     completeTask() {
-      this.done = true;
+      this.isDone = true;
     }
   
     // methods

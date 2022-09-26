@@ -1,12 +1,11 @@
-import todo from "../classes/todo";
 import checkbox from "../../assets/img/checkbox.svg";
-import { toggleSidebar } from "./sidebar";
+import { createSidebarForm, toggleSidebar } from "./sidebar";
 import removeCard from "./delete-card";
 import Todo from "../classes/todo";
 import submit from "../../assets/img/submit.svg";
 
 export default function createCardForm(project, projectBoard) {
-  let cards = document.querySelector(`#${project.name}>.cards`);
+  let cards = document.querySelector(`#${project.id}>.cards`);
 
   // create card
   let card = document.createElement("div");
@@ -48,7 +47,10 @@ export default function createCardForm(project, projectBoard) {
 
   cards.appendChild(card);
 
-  titleForm.addEventListener("submit", () => {
+  title.focus();
+  title.select();
+
+  titleForm.addEventListener("submit", (e) => {
     // get form input
     let todoName = document.forms["todo-form"].querySelector(".input").value;
     // create new todo object
@@ -63,11 +65,11 @@ export default function createCardForm(project, projectBoard) {
 }
 
 export function createTodo(todo, project) {
-  let cards = document.querySelector(`#${project.name}>.cards`);
+  let cards = document.querySelector(`#${project.id}>.cards`);
 
   let card = document.createElement("div");
   card.classList.add("card");
-  card.id = todo.title;
+  card.id = todo.id;
 
   let title = document.createElement("div");
   title.classList.add("title");
@@ -87,17 +89,12 @@ export function createTodo(todo, project) {
 
   cards.appendChild(card);
 
+  card.addEventListener("click", () => {
+    createSidebarForm(todo, project);
+  });
+
   isDone.addEventListener("click", () => {
     removeCard(todo, project);
-    toggleSidebar();
-  });
-
-  card.addEventListener("click", () => {
-    toggleSidebar();
-  });
-
-  let clickArrow = document.querySelector(".close");
-  clickArrow.addEventListener("click", () => {
     toggleSidebar();
   });
 }

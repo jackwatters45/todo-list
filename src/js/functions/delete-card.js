@@ -1,8 +1,8 @@
 export default function deleteProject(todo, project) {
     // Remove card from dom
-    let card = document.querySelector(`#${todo.title}`);
+    let card = document.querySelector(`#${todo.id}`);
     card.remove();
     // remove todo from projects object
-    project.removeTodoFromProject(todo.title)
+    project.removeTodoFromProject(todo.id)
   }
   
