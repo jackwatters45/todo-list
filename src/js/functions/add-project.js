@@ -61,6 +61,7 @@ export function addForm(projectBoard) {
 }
 
 export function addProject(project, projectBoard) {
+  // remove event listener 
   let sections = document.querySelector(".sections");
 
   let section = document.createElement("div");
@@ -105,7 +106,6 @@ export function addProject(project, projectBoard) {
   section.appendChild(newElement);
   sections.appendChild(section);
 
-  // let trashh = document.querySelector()
   section.addEventListener("mouseenter", () => {
     trashIcon.classList.remove("hidden");
   });

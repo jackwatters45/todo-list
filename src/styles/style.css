@@ -28,6 +28,12 @@ a {
     text-decoration: none;
 }
 
+hr {
+    background-color: var(--empty-font-color);
+    border: none;
+    height: 1px;
+}
+
 input {
     background-color: transparent;
     border: inherit;
@@ -48,6 +54,8 @@ input {
 .done:hover,
 .new:hover,
 .add-project:hover,
+.add-project-button:hover,
+
 .close:hover {
     background-color: rgba(255, 255, 255, 0.055);
     border-radius: 4px;
@@ -109,7 +117,7 @@ img {
 }
 
 .section,
-.add-project {
+.add-project, .add-project-button {
     margin: 4px;
     width: 260px;
     background-color: var(--section-background-color);
@@ -123,6 +131,7 @@ img {
 #todo-form {
     display: grid;
     grid-template-columns: 1fr 24px;
+    width: inherit;
 }
 
 .header-title {
@@ -202,7 +211,7 @@ img {
 }
 
 .new,
-.add-project {
+.add-project, .add-project-button {
     gap: 4px;
     margin-top: 4px;
     color: var(--secondary-font-color);
