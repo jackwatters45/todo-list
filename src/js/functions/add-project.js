@@ -4,6 +4,7 @@ import deleteProject from "./delete-project";
 import newCard from "./add-card";
 import submit from "../../assets/img/submit.svg";
 import Project from "../classes/project";
+import addToStorage from "./save-content"
 
 export function addForm(projectBoard) {
   let sections = document.querySelector(".sections");
@@ -53,6 +54,8 @@ export function addForm(projectBoard) {
     let project = new Project(projectName);
     // add project to project board
     projectBoard.addProjectToBoard(project);
+    // save to local storage
+    addToStorage(project);
     // create new project column (dom)
     addProject(project, projectBoard);
     // remove form
@@ -61,7 +64,7 @@ export function addForm(projectBoard) {
 }
 
 export function addProject(project, projectBoard) {
-  // remove event listener 
+  // remove event listener
   let sections = document.querySelector(".sections");
 
   let section = document.createElement("div");

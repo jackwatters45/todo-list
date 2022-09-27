@@ -4,6 +4,7 @@ import toggleSidebar from "./toggle-sidebar";
 import removeCard from "./delete-card";
 import Todo from "../classes/todo";
 import submit from "../../assets/img/submit.svg";
+import addToStorage from "../functions/save-content"
 
 export default function createCardForm(project, projectBoard) {
   let cards = document.querySelector(`#${project.id}>.cards`);
@@ -58,6 +59,8 @@ export default function createCardForm(project, projectBoard) {
     let todo = new Todo(todoName);
     // add todo to project
     project.addTodo(todo);
+    // save to local storage
+    addToStorage(todo)
     // create new project column (dom)
     createTodo(todo, project, projectBoard);
     // remove form

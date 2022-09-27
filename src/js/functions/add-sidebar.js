@@ -4,7 +4,8 @@ import _dateIcon from "../../assets/img/calendar.svg";
 import _doneIcon from "../../assets/img/check.svg";
 import _emptyCheckbox from "../../assets/img/checkbox.svg";
 import removeCard from "./delete-card";
-import removeSidebar from "./delete-sidebar"
+import removeSidebar from "./delete-sidebar";
+import addToStorage from "./save-content";
 
 export default function createSidebarForm(todo, project) {
   let sidebarContainer = document.querySelector(".sidebar-positioning");
@@ -12,7 +13,7 @@ export default function createSidebarForm(todo, project) {
 
   let sidebar = document.createElement("div");
   sidebar.classList.add("sidebar");
-  sidebar.id = todo.id
+  sidebar.id = todo.id;
 
   let close = document.createElement("div");
   close.classList.add("close");
@@ -80,7 +81,6 @@ export default function createSidebarForm(todo, project) {
 
   sidebar.appendChild(properties);
   sidebarContainer.appendChild(sidebar);
-  // toggleSidebar();
 
   // Done label
   let doneProperty = document.createElement("label");
@@ -139,15 +139,27 @@ export default function createSidebarForm(todo, project) {
     removeSidebar();
   });
 
-  priority.addEventListener('change', () => {
+  name.addEventListener("change", () => {
+    todo.setName(name.value);
+    // save to local storage
+    addToStorage(todo);
+  });
+
+  priority.addEventListener("change", () => {
     todo.setPriority(priority.value);
-  })
+    // save to local storage
+    addToStorage(todo);
+  });
 
-  date.addEventListener('change', () => {
+  date.addEventListener("change", () => {
     todo.setDate(date.value);
-  })
+    // save to local storage
+    addToStorage(todo);
+  });
 
-  notes.addEventListener('change', () => {
+  notes.addEventListener("change", () => {
     todo.setNotes(notesInput.value);
-  })
+    // save to local storage
+    addToStorage(todo);
+  });
 }
