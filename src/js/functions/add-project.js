@@ -65,7 +65,6 @@ export function addProject(project, projectBoard) {
 
   let section = document.createElement("div");
   section.classList.add("section");
-  console.log(project.id)
   section.id = project.id;
 
   let header = document.createElement("div");

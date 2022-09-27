@@ -1,5 +1,6 @@
 import checkbox from "../../assets/img/checkbox.svg";
-import { createSidebarForm, toggleSidebar } from "./sidebar";
+import createSidebarForm from "./add-sidebar";
+import toggleSidebar from "./toggle-sidebar";
 import removeCard from "./delete-card";
 import Todo from "../classes/todo";
 import submit from "../../assets/img/submit.svg";
@@ -90,11 +91,10 @@ export function createTodo(todo, project) {
   cards.appendChild(card);
 
   card.addEventListener("click", () => {
-    createSidebarForm(todo, project);
+    toggleSidebar(todo, project);
   });
 
   isDone.addEventListener("click", () => {
     removeCard(todo, project);
-    toggleSidebar();
   });
 }

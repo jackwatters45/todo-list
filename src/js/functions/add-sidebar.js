@@ -4,21 +4,15 @@ import _dateIcon from "../../assets/img/calendar.svg";
 import _doneIcon from "../../assets/img/check.svg";
 import _emptyCheckbox from "../../assets/img/checkbox.svg";
 import removeCard from "./delete-card";
+import removeSidebar from "./delete-sidebar"
 
-export function toggleSidebar() {
+export default function createSidebarForm(todo, project) {
   let sidebarContainer = document.querySelector(".sidebar-positioning");
-  sidebarContainer.classList.toggle("hidden");
-
-  if (sidebarContainer.classList.contains("hidden")) {
-    sidebarContainer.innerHTML = "";
-  }
-}
-
-export function createSidebarForm(todo, project) {
-  let sidebarContainer = document.querySelector(".sidebar-positioning");
+  sidebarContainer.classList.remove("hidden");
 
   let sidebar = document.createElement("div");
   sidebar.classList.add("sidebar");
+  sidebar.id = todo.id
 
   let close = document.createElement("div");
   close.classList.add("close");
@@ -86,7 +80,7 @@ export function createSidebarForm(todo, project) {
 
   sidebar.appendChild(properties);
   sidebarContainer.appendChild(sidebar);
-  toggleSidebar();
+  // toggleSidebar();
 
   // Done label
   let doneProperty = document.createElement("label");
@@ -138,11 +132,11 @@ export function createSidebarForm(todo, project) {
   // add event listeners
   done.addEventListener("click", () => {
     removeCard(todo, project);
-    toggleSidebar();
+    removeSidebar();
   });
 
   close.addEventListener("click", () => {
-    toggleSidebar();
+    removeSidebar();
   });
 
   priority.addEventListener('change', () => {
