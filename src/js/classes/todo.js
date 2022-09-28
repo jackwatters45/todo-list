@@ -2,7 +2,7 @@
 export default class Todo {
     constructor(
       title,
-      priority,
+      priority = undefined,
       date = new Date().toLocaleDateString(),
       notes = undefined
     ) {

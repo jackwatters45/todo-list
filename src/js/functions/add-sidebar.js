@@ -7,7 +7,7 @@ import removeCard from "./delete-card";
 import removeSidebar from "./delete-sidebar";
 import addToStorage from "./save-content";
 
-export default function createSidebarForm(todo, project) {
+export default function createSidebarForm(todo, project, projectBoard) {
   let sidebarContainer = document.querySelector(".sidebar-positioning");
   sidebarContainer.classList.remove("hidden");
 
@@ -131,7 +131,7 @@ export default function createSidebarForm(todo, project) {
 
   // add event listeners
   done.addEventListener("click", () => {
-    removeCard(todo, project);
+    removeCard(todo, project, projectBoard);
     removeSidebar();
   });
 
@@ -140,26 +140,26 @@ export default function createSidebarForm(todo, project) {
   });
 
   name.addEventListener("change", () => {
-    todo.setName(name.value);
+    todo.setTitle(name.value);
     // save to local storage
-    addToStorage(todo);
+    addToStorage(projectBoard);
   });
 
   priority.addEventListener("change", () => {
     todo.setPriority(priority.value);
     // save to local storage
-    addToStorage(todo);
+    addToStorage(projectBoard);
   });
 
   date.addEventListener("change", () => {
     todo.setDate(date.value);
     // save to local storage
-    addToStorage(todo);
+    addToStorage(projectBoard);
   });
 
   notes.addEventListener("change", () => {
     todo.setNotes(notesInput.value);
     // save to local storage
-    addToStorage(todo);
+    addToStorage(projectBoard);
   });
 }

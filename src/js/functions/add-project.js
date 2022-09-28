@@ -47,6 +47,7 @@ export function addForm(projectBoard) {
   input.select();
 
   header.addEventListener("submit", () => {
+    // TODO make this process its own function
     // get form input
     let projectName =
       document.forms["project-form"].querySelector(".input").value;
@@ -55,7 +56,7 @@ export function addForm(projectBoard) {
     // add project to project board
     projectBoard.addProjectToBoard(project);
     // save to local storage
-    addToStorage(project);
+    addToStorage(projectBoard);
     // create new project column (dom)
     addProject(project, projectBoard);
     // remove form

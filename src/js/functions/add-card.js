@@ -60,7 +60,8 @@ export default function createCardForm(project, projectBoard) {
     // add todo to project
     project.addTodo(todo);
     // save to local storage
-    addToStorage(todo)
+    addToStorage(projectBoard)
+    console.log(projectBoard)
     // create new project column (dom)
     createTodo(todo, project, projectBoard);
     // remove form
@@ -68,7 +69,7 @@ export default function createCardForm(project, projectBoard) {
   });
 }
 
-export function createTodo(todo, project) {
+export function createTodo(todo, project, projectBoard) {
   let cards = document.querySelector(`#${project.id}>.cards`);
 
   let card = document.createElement("div");
@@ -94,10 +95,10 @@ export function createTodo(todo, project) {
   cards.appendChild(card);
 
   card.addEventListener("click", () => {
-    toggleSidebar(todo, project);
+    toggleSidebar(todo, project, projectBoard);
   });
 
   isDone.addEventListener("click", () => {
-    removeCard(todo, project);
+    removeCard(todo, project, projectBoard);
   });
 }
