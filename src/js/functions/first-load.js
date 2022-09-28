@@ -3,7 +3,7 @@ import loadContent from "./load-content";
 
 export default function firstLoad(projectBoard) {
   // if there is anything in the local storare
-  if(!(localStorage.getItem('Project Board') === undefined)){
+  if(localStorage.getItem('Project Board')){
   // load content
   loadContent(projectBoard);
 }

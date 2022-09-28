@@ -1,5 +1,4 @@
 import checkbox from "../../assets/img/checkbox.svg";
-import createSidebarForm from "./add-sidebar";
 import toggleSidebar from "./toggle-sidebar";
 import removeCard from "./delete-card";
 import Todo from "../classes/todo";
@@ -18,6 +17,7 @@ export default function createCardForm(project, projectBoard) {
   titleForm.classList.add("title");
   titleForm.id = "todo-form";
 
+  // todo title form
   let title = document.createElement("input");
   title.placeholder = "Type a name...";
   title.type = "text";
@@ -25,6 +25,7 @@ export default function createCardForm(project, projectBoard) {
   title.classList.add("input");
   titleForm.appendChild(title);
 
+  // potentially remove this and just change the event listener to a change rather than submit
   let submitElement = document.createElement("input");
   submitElement.classList.add("submit-card");
   submitElement.type = "image";
@@ -36,6 +37,7 @@ export default function createCardForm(project, projectBoard) {
 
   card.appendChild(titleForm);
 
+  // done checkbox + text
   let isDone = document.createElement("div");
   isDone.classList.add("done");
 
@@ -70,17 +72,21 @@ export default function createCardForm(project, projectBoard) {
 }
 
 export function createTodo(todo, project, projectBoard) {
+  // use project id to find proper column
   let cards = document.querySelector(`#${project.id}>.cards`);
 
   let card = document.createElement("div");
   card.classList.add("card");
+  // card id = todo objects id
   card.id = todo.id;
 
+  // adds title text
   let title = document.createElement("div");
   title.classList.add("title");
   title.innerHTML = todo.title;
   card.appendChild(title);
 
+  // is done element remains
   let isDone = document.createElement("div");
   isDone.classList.add("done");
 
@@ -94,10 +100,12 @@ export function createTodo(todo, project, projectBoard) {
 
   cards.appendChild(card);
 
+  // clicking on card opens it up or closes it depending on if the sidebar is opened
   card.addEventListener("click", () => {
     toggleSidebar(todo, project, projectBoard);
   });
 
+  // clicking the isdone div remove todo 
   isDone.addEventListener("click", () => {
     removeCard(todo, project, projectBoard);
   });

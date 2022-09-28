@@ -126,19 +126,23 @@ export default function createSidebarForm(todo, project, projectBoard) {
   sidebar.appendChild(properties);
   sidebarContainer.appendChild(sidebar);
 
+  // click on name when opened
   name.focus();
   name.click();
 
   // add event listeners
+  // clicking done div removes todo and closes sidebar
   done.addEventListener("click", () => {
     removeCard(todo, project, projectBoard);
     removeSidebar();
   });
 
+  // close button closes sidebar
   close.addEventListener("click", () => {
     removeSidebar();
   });
 
+  // change in any of the inputs saves to local storage and updates todo
   name.addEventListener("change", () => {
     todo.setTitle(name.value);
     // save to local storage

@@ -4,4 +4,6 @@ export default function deleteProject(project, projectBoard) {
   section.remove()
   // remove project from projectBoard
   projectBoard.removeProjectFromBoard(project.id)
+  // update local storage
+  saveContent(projectBoard)
 }

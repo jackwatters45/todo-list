@@ -2,6 +2,7 @@
 export default class Project {
   constructor(name) {
     this.name = name;
+    // regex removes special chars and replaces space with a -
     this.id = name.replace(/[^a-zA-Z0-9 ]/g, "").replace(/\s+/g, "-");
     this.todos = [];
   }
@@ -18,7 +19,6 @@ export default class Project {
   // Methods
   changeName(name) {
     this.name = name;
-    // add something to change project of each object??
   }
 
   addTodo(newTodo) {

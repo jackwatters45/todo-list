@@ -4,7 +4,7 @@ import deleteProject from "./delete-project";
 import newCard from "./add-card";
 import submit from "../../assets/img/submit.svg";
 import Project from "../classes/project";
-import addToStorage from "./save-content"
+import addToStorage from "./save-content";
 
 export function addForm(projectBoard) {
   let sections = document.querySelector(".sections");
@@ -43,11 +43,11 @@ export function addForm(projectBoard) {
   section.appendChild(header);
   sections.appendChild(section);
 
+  // cursor clicks on the text
   input.focus();
   input.select();
 
   header.addEventListener("submit", () => {
-    // TODO make this process its own function
     // get form input
     let projectName =
       document.forms["project-form"].querySelector(".input").value;
@@ -65,7 +65,7 @@ export function addForm(projectBoard) {
 }
 
 export function addProject(project, projectBoard) {
-  // remove event listener
+  // creates project given the information submitted in the form
   let sections = document.querySelector(".sections");
 
   let section = document.createElement("div");
@@ -110,6 +110,7 @@ export function addProject(project, projectBoard) {
   section.appendChild(newElement);
   sections.appendChild(section);
 
+  // when user hovers over card show the little trash can to delete the project
   section.addEventListener("mouseenter", () => {
     trashIcon.classList.remove("hidden");
   });
@@ -117,10 +118,12 @@ export function addProject(project, projectBoard) {
     trashIcon.classList.add("hidden");
   });
 
+  // when trashcan is clicked delete project
   deleteElement.addEventListener("click", () => {
     deleteProject(project, projectBoard);
   });
 
+  // when new button is clicked add a todo
   newElement.addEventListener("click", () => {
     newCard(project, projectBoard);
   });

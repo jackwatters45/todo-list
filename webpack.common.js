@@ -1,6 +1,4 @@
-
-
-const path  = require("path");
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -10,7 +8,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/templates/index.html",
-      title: "To-do List",
+      title: "Todo List",
     }),
   ],
   module: {
