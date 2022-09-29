@@ -1,52 +1,92 @@
-import checkbox from "../../assets/img/checkbox.svg";
-import toggleSidebar from "./toggle-sidebar";
-import removeCard from "./delete-card";
-import Todo from "../classes/todo";
-import submit from "../../assets/img/submit.svg";
-import addToStorage from "../functions/save-content"
+import checkbox from '../../assets/img/checkbox.svg';
+import toggleSidebar from './toggle-sidebar';
+import removeCard from './delete-card';
+import Todo from '../classes/todo';
+import submit from '../../assets/img/submit.svg';
+import addToStorage from './save-content';
+
+export function createTodo(todo, project, projectBoard) {
+  // use project id to find proper column
+  const cards = document.querySelector(`#${project.id}>.cards`);
+
+  const card = document.createElement('div');
+  card.classList.add('card');
+  // card id = todo objects id
+  card.id = todo.id;
+
+  // adds title text
+  const title = document.createElement('div');
+  title.classList.add('title');
+  title.innerHTML = todo.title;
+  card.appendChild(title);
+
+  // is done element remains
+  const isDone = document.createElement('div');
+  isDone.classList.add('done');
+
+  const image = document.createElement('img');
+  image.src = checkbox;
+  image.alt = 'Check Box';
+  isDone.appendChild(image);
+
+  isDone.innerHTML += 'Done';
+  card.appendChild(isDone);
+
+  cards.appendChild(card);
+
+  // clicking on card opens it up or closes it depending on if the sidebar is opened
+  card.addEventListener('click', () => {
+    toggleSidebar(todo, project, projectBoard);
+  });
+
+  // clicking the isdone div remove todo
+  isDone.addEventListener('click', () => {
+    removeCard(todo, project, projectBoard);
+  });
+}
 
 export default function createCardForm(project, projectBoard) {
-  let cards = document.querySelector(`#${project.id}>.cards`);
+  const cards = document.querySelector(`#${project.id}>.cards`);
 
   // create card
-  let card = document.createElement("div");
-  card.classList.add("card");
+  const card = document.createElement('div');
+  card.classList.add('card');
 
   // add form html
-  let titleForm = document.createElement("form");
-  titleForm.classList.add("title");
-  titleForm.id = "todo-form";
+  const titleForm = document.createElement('form');
+  titleForm.classList.add('title');
+  titleForm.id = 'todo-form';
 
   // todo title form
-  let title = document.createElement("input");
-  title.placeholder = "Type a name...";
-  title.type = "text";
+  const title = document.createElement('input');
+  title.placeholder = 'Type a name...';
+  title.type = 'text';
   title.required = true;
-  title.classList.add("input");
+  title.classList.add('input');
   titleForm.appendChild(title);
 
   // potentially remove this and just change the event listener to a change rather than submit
-  let submitElement = document.createElement("input");
-  submitElement.classList.add("submit-card");
-  submitElement.type = "image";
-  submitElement.style.width = "16px";
+  const submitElement = document.createElement('input');
+  submitElement.classList.add('submit-card');
+  submitElement.type = 'image';
+  submitElement.style.width = '16px';
   submitElement.src = submit;
-  submitElement.name = "project-name";
-  submitElement.alt = "Submit Button";
+  submitElement.name = 'project-name';
+  submitElement.alt = 'Submit Button';
   titleForm.appendChild(submitElement);
 
   card.appendChild(titleForm);
 
   // done checkbox + text
-  let isDone = document.createElement("div");
-  isDone.classList.add("done");
+  const isDone = document.createElement('div');
+  isDone.classList.add('done');
 
-  let image = document.createElement("img");
+  const image = document.createElement('img');
   image.src = checkbox;
-  image.alt = "Check Box";
+  image.alt = 'Check Box';
   isDone.appendChild(image);
 
-  isDone.innerHTML += "Done";
+  isDone.innerHTML += 'Done';
   card.appendChild(isDone);
 
   cards.appendChild(card);
@@ -54,59 +94,18 @@ export default function createCardForm(project, projectBoard) {
   title.focus();
   title.select();
 
-  titleForm.addEventListener("submit", (e) => {
+  titleForm.addEventListener('submit', () => {
     // get form input
-    let todoName = document.forms["todo-form"].querySelector(".input").value;
+    const todoName = document.forms['todo-form'].querySelector('.input').value;
     // create new todo object
-    let todo = new Todo(todoName);
+    const todo = new Todo(todoName);
     // add todo to project
     project.addTodo(todo);
     // save to local storage
-    addToStorage(projectBoard)
-    console.log(projectBoard)
+    addToStorage(projectBoard);
     // create new project column (dom)
     createTodo(todo, project, projectBoard);
     // remove form
     card.remove();
-  });
-}
-
-export function createTodo(todo, project, projectBoard) {
-  // use project id to find proper column
-  let cards = document.querySelector(`#${project.id}>.cards`);
-
-  let card = document.createElement("div");
-  card.classList.add("card");
-  // card id = todo objects id
-  card.id = todo.id;
-
-  // adds title text
-  let title = document.createElement("div");
-  title.classList.add("title");
-  title.innerHTML = todo.title;
-  card.appendChild(title);
-
-  // is done element remains
-  let isDone = document.createElement("div");
-  isDone.classList.add("done");
-
-  let image = document.createElement("img");
-  image.src = checkbox;
-  image.alt = "Check Box";
-  isDone.appendChild(image);
-
-  isDone.innerHTML += "Done";
-  card.appendChild(isDone);
-
-  cards.appendChild(card);
-
-  // clicking on card opens it up or closes it depending on if the sidebar is opened
-  card.addEventListener("click", () => {
-    toggleSidebar(todo, project, projectBoard);
-  });
-
-  // clicking the isdone div remove todo 
-  isDone.addEventListener("click", () => {
-    removeCard(todo, project, projectBoard);
   });
 }

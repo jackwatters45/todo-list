@@ -3,7 +3,7 @@ export default class Project {
   constructor(name) {
     this.name = name;
     // regex removes special chars and replaces space with a -
-    this.id = name.replace(/[^a-zA-Z0-9 ]/g, "").replace(/\s+/g, "-");
+    this.id = name.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-');
     this.todos = [];
   }
 
@@ -26,7 +26,7 @@ export default class Project {
   }
 
   removeTodoFromProject(todoToRemove) {
-    let index = this.todos.findIndex((element) => element === todoToRemove);
+    const index = this.todos.findIndex((element) => element === todoToRemove);
     this.todos.splice(index, 1);
   }
 }

@@ -14,8 +14,8 @@ export default class ProjectBoard {
   }
 
   removeProjectFromBoard(projectToRemove) {
-    let index = this.projects.findIndex(
-      (element) => element === projectToRemove
+    const index = this.projects.findIndex(
+      (element) => element === projectToRemove,
     );
     this.projects.splice(index, 1);
   }

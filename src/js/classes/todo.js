@@ -4,16 +4,17 @@ export default class Todo {
     title,
     priority = undefined,
     date = new Date().toLocaleDateString(),
-    notes = undefined
+    notes = undefined,
   ) {
     this.title = title;
     // regex removes special chars and replaces space with a -
-    this.id = title.replace(/[^a-zA-Z0-9 ]/g, "").replace(/\s+/g, "-");
+    this.id = title.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-');
     this.priority = priority;
     this.date = date;
     this.notes = notes;
     this.isDone = false;
   }
+
   // getters
   getTitle() {
     return this.title;
