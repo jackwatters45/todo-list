@@ -1,6 +1,6 @@
 import saveContent from './save-content';
 
-export default function deleteProject(project, projectBoard) {
+export default (project, projectBoard) => {
   // remove section from dom
   const section = document.querySelector(`#${project.id}`);
   section.remove();
@@ -8,4 +8,4 @@ export default function deleteProject(project, projectBoard) {
   projectBoard.removeProjectFromBoard(project.id);
   // update local storage
   saveContent(projectBoard);
-}
+};

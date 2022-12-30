@@ -6,7 +6,7 @@ import { createTodo } from './add-card';
 import { addProject } from './add-project';
 
 // if data in local storage
-export default function loadContent(projectBoard) {
+export default (projectBoard) => {
   // get projects board object
   const storedProjectBoard = JSON.parse(window.localStorage.getItem('Project Board'));
   // get array with projects from stored projects board object
@@ -41,4 +41,4 @@ export default function loadContent(projectBoard) {
       createTodo(todo, project, projectBoard);
     });
   });
-}
+};

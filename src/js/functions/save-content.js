@@ -1,4 +1,3 @@
-export default function saveContent(projectBoard) {
-  // saves the project board object to local memory
+export default (projectBoard) => {
   localStorage.setItem('Project Board', JSON.stringify(projectBoard));
-}
+};

@@ -1,6 +1,6 @@
 import saveContent from './save-content';
 
-export default function deleteProject(todo, project, projectBoard) {
+export default (todo, project, projectBoard) => {
   // Remove card from dom
   const card = document.querySelector(`#${todo.id}`);
   card.remove();
@@ -8,4 +8,4 @@ export default function deleteProject(todo, project, projectBoard) {
   project.removeTodoFromProject(todo.id);
   // update local storage
   saveContent(projectBoard);
-}
+};

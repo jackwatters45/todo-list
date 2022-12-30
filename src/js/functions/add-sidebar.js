@@ -7,7 +7,7 @@ import removeCard from './delete-card';
 import removeSidebar from './delete-sidebar';
 import addToStorage from './save-content';
 
-export default function createSidebarForm(todo, project, projectBoard) {
+export default (todo, project, projectBoard) => {
   const sidebarContainer = document.querySelector('.sidebar-positioning');
   sidebarContainer.classList.remove('hidden');
 
@@ -166,4 +166,4 @@ export default function createSidebarForm(todo, project, projectBoard) {
     // save to local storage
     addToStorage(projectBoard);
   });
-}
+};
