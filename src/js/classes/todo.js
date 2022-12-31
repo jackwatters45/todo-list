@@ -1,9 +1,10 @@
-// an individual to do object
+// an individual todo object
 export default class Todo {
+  // TODO probably remove notes and priority from constructor
   constructor(
     title,
     priority = undefined,
-    date = new Date().toLocaleDateString(),
+    date = new Date(),
     notes = undefined,
   ) {
     this.title = title;
@@ -53,7 +54,7 @@ export default class Todo {
     this.notes = notes;
   }
 
-  completeTask() {
-    this.isDone = true;
+  toggleDone() {
+    this.isDone = !this.isDone;
   }
 }

@@ -1,22 +1,17 @@
 export default class ProjectBoard {
   constructor() {
-    this.projects = [];
+    this.projects = {};
   }
 
-  // Getter
   getProjects() {
     return this.projects;
   }
 
-  // Methods
   addProjectToBoard(project) {
-    this.projects.push(project);
+    this.projects[project.id] = project;
   }
 
   removeProjectFromBoard(projectToRemove) {
-    const index = this.projects.findIndex(
-      (element) => element === projectToRemove,
-    );
-    this.projects.splice(index, 1);
+    delete this.projects[projectToRemove].id;
   }
 }

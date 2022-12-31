@@ -4,10 +4,14 @@ export default class Project {
     this.name = name;
     // regex removes special chars and replaces space with a -
     this.id = name.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-');
-    this.todos = [];
+    this.todos = {};
   }
 
   // Getters
+  getId() {
+    return this.id;
+  }
+
   getName() {
     return this.name;
   }
@@ -22,11 +26,10 @@ export default class Project {
   }
 
   addTodo(newTodo) {
-    this.todos.push(newTodo);
+    this.todos[newTodo.id] = newTodo;
   }
 
   removeTodoFromProject(todoToRemove) {
-    const index = this.todos.findIndex((element) => element === todoToRemove);
-    this.todos.splice(index, 1);
+    delete this.todos[todoToRemove].id;
   }
 }
