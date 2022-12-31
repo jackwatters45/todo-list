@@ -2,7 +2,7 @@
 export default class Project {
   constructor(name) {
     this.name = name;
-    // regex removes special chars and replaces space with a -
+    // regex removes special chars and replaces space with a '-'
     this.id = name.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-');
     this.todos = {};
   }
@@ -25,11 +25,11 @@ export default class Project {
     this.name = name;
   }
 
-  addTodo(newTodo) {
-    this.todos[newTodo.id] = newTodo;
+  addTodo(todo) {
+    this.todos[todo.id] = todo;
   }
 
-  removeTodoFromProject(todoToRemove) {
-    delete this.todos[todoToRemove].id;
+  deleteTodo(todo) {
+    delete this.todos[todo.id];
   }
 }

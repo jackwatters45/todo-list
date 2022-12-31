@@ -7,11 +7,11 @@ export default class ProjectBoard {
     return this.projects;
   }
 
-  addProjectToBoard(project) {
+  addProject(project) {
     this.projects[project.id] = project;
   }
 
-  removeProjectFromBoard(projectToRemove) {
-    delete this.projects[projectToRemove].id;
+  deleteProject(project) {
+    delete this.projects[project.id];
   }
 }
