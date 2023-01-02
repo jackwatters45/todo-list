@@ -1,4 +1,4 @@
-import trash from '../assets/img/trash.svg';
+import trashIcon from '../assets/img/trash.svg';
 import plus from '../assets/img/plus.svg';
 
 // creates project given the information submitted in the form
@@ -22,11 +22,11 @@ export default (project) => {
   deleteElement.classList.add('delete');
   deleteElement.id = project.id;
 
-  const trashIcon = document.createElement('img');
-  trashIcon.src = trash;
-  trashIcon.alt = 'Delete Button';
-  trashIcon.classList.add('hidden');
-  deleteElement.appendChild(trashIcon);
+  const trash = document.createElement('img');
+  trash.src = trashIcon;
+  trash.alt = 'Delete Button';
+  trash.classList.add('hidden');
+  deleteElement.appendChild(trash);
 
   header.appendChild(deleteElement);
   section.appendChild(header);
@@ -48,8 +48,8 @@ export default (project) => {
   sections.appendChild(section);
 
   // when user hovers over card show the little trash can to delete the project
-  section.addEventListener('mouseenter', () => trashIcon.classList.remove('hidden'));
-  section.addEventListener('mouseleave', () => trashIcon.classList.add('hidden'));
+  section.addEventListener('mouseenter', () => trash.classList.remove('hidden'));
+  section.addEventListener('mouseleave', () => trash.classList.add('hidden'));
 
   return section;
 };
