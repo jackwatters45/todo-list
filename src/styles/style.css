@@ -51,13 +51,14 @@ input {
 .new:hover,
 .add-project:hover,
 .add-project-button:hover,
-
-.close:hover {
+.close:hover,
+.priority:hover {
     background-color: rgba(255, 255, 255, 0.055);
     border-radius: 4px;
 }
 
-.card:hover {
+.card:hover,
+.is-done>img:hover {
     background-color: var(--card-hover-background-color);
 }
 
@@ -66,7 +67,8 @@ input {
 .new,
 .add-project,
 .card,
-.delete, .is-done>img,
+.delete,
+.is-done>img,
 a {
     cursor: pointer;
 }
@@ -91,6 +93,7 @@ img {
     height: 100vh;
     margin: 0 auto;
     grid-template-rows: 120px 1fr 30px;
+    overflow: hidden;
 }
 
 .nav {
@@ -103,23 +106,31 @@ img {
 
 .main-content {
     display: flex;
+    height: fit-content;
     margin: 0px 50px;
+    overflow: auto;
 }
 
 /* Main Content */
 /* Project */
 .sections {
     display: flex;
+    margin-bottom: 8px;
 }
 
 .section,
-.add-project, .add-project-button {
+.add-project,
+.add-project-button {
     margin: 4px;
     width: 260px;
     background-color: var(--section-background-color);
     height: fit-content;
     border-radius: 4px;
     padding: 6px;
+}
+
+.add-project-button>div {
+    width: inherit;
 }
 
 .header,
@@ -155,10 +166,11 @@ img {
 
 .delete {
     display: flex;
+    margin-right: 15px
 }
 
 .trash {
-    visibility: hidden
+    visibility: hidden;
 }
 
 /* Todo Cards */
@@ -207,7 +219,8 @@ img {
 }
 
 .new,
-.add-project, .add-project-button {
+.add-project,
+.add-project-button {
     gap: 4px;
     margin-top: 4px;
     color: var(--secondary-font-color);
@@ -258,10 +271,10 @@ img {
     padding: 4px;
 }
 
-.properties {
+#properties {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 60px 40px 40px 40px 1fr;
+    grid-template-rows: 60px 40px 40px 40px 40px 1fr;
     padding: 48px;
 }
 
@@ -273,14 +286,22 @@ img {
 }
 
 .priority,
+.project,
 .date,
-.is-done {
+.is-done,
+.done-label,
+.date-label,
+.priority-label,
+.project-label {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.value {
+.project,
+.date,
+.value,
+.note-input {
     color: var(--main-font-color);
 }
 
@@ -292,6 +313,38 @@ img {
     padding: 12px 0px;
 }
 
+textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+    background-color: inherit;
+    font-size: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+/* Hidden */
 .hidden {
     display: none;
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #474c50;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--section-background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--empty-font-color);
 }

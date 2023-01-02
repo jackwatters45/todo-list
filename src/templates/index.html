@@ -24,8 +24,8 @@
                 </form>
             </div>
             <div class="add-project-button">
-                <img class="plus" src="../assets/img/plus.svg" alt="Plus Icon">
-                Add New Project
+                    <img class="plus" src="../assets/img/plus.svg" alt="Plus Icon">
+                    <div>Add New Project</div>
             </div>
         </div>
         <div class="footer">
@@ -35,6 +35,27 @@
         </div>
     </div>
     <div class="sidebar-positioning hidden">
+        <div class="sidebar">
+            <div class="close"><img class="arrow" src="../assets/img/arrow.svg" alt="Close Button"></div>
+            <form id="properties">
+                <input class="name" required type="text">
+                <label class="project-label">
+                    <img src="../assets/img/project.svg" alt="Priority Icon">Project</label>
+                <div class="project"></div>
+                <label class="priority-label">
+                    <img src="../assets/img/priority.svg" alt="Priority Icon">Priority</label>
+                <input class="priority" placeholder="Empty" type="text">
+                <label class="date-label"><img src="../assets/img/calendar.svg" alt="Date Icon">Time Created</label>
+                <div class="date"></div>
+                <label class="done-label"><img src="../assets/img/check.svg" alt="Checkmark Icon">Done?</label>
+                <div class="is-done"><img src="../assets/img/checkbox.svg" alt="Empty Checkmark">
+                </div>
+                <div class="notes">
+                    <hr class="note-break">
+                    <textarea class="note-input" placeholder="Add notes here..." type="text"></textarea>
+                </div>
+            </form>
+        </div>
     </div>
 
 </body>
