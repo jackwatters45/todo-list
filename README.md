@@ -5,5 +5,3 @@ This is a copy of what my todo board in notion looks like. It allows users to cr
 Notes
 - loading local storage probably needs a shit ton of work
 - drag n drop
-
-- clean up git
