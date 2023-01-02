@@ -1,6 +1,6 @@
 // an individual todo object
 export default class Todo {
-  // TODO probably remove notes and priority from constructor
+  // uses default values to more easily load local content
   constructor(
     title,
     priority = undefined,
@@ -8,7 +8,7 @@ export default class Todo {
     notes = undefined,
   ) {
     this.title = title;
-    // regex removes special chars and replaces space with a -
+    // removes special chars and replaces space with a -
     this.id = title.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-');
     this.priority = priority;
     this.date = date;
@@ -40,6 +40,7 @@ export default class Todo {
   // Setters
   setTitle(title) {
     this.title = title;
+    this.id = title.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-');
   }
 
   setPriority(priority) {
