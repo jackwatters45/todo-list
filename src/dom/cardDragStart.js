@@ -1,5 +1,7 @@
 export default (e) => {
-  // transfer data to drop
-  const data = { id: e.target.id };
+  const srcProjectId = e.path[2].id;
+  const todoId = e.target.id;
+
+  const data = { srcProjectId, todoId };
   e.dataTransfer.setData('text/plain', JSON.stringify(data));
 };

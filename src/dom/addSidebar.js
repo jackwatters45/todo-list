@@ -1,5 +1,4 @@
-// import removeCard from './delete-card';
-import addToStorage from '../js/functions/saveLocalStorage';
+import addToStorage from '../functions/saveLocalStorage';
 
 export default (todo, projectBoard) => {
   const sidebar = document.querySelector('.sidebar-positioning');
