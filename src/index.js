@@ -1,29 +1,32 @@
 /* eslint-disable no-shadow */
 import './styles/style.css';
-import ProjectBoard from './js/classes/projectBoard';
+import ProjectBoard from './classes/projectBoard';
 // eslint-disable-next-line no-unused-vars
-import loadContent from './js/functions/loadLocalStorage';
-import Project from './js/classes/project';
-import saveToLocalStorage from './js/functions/saveLocalStorage';
+import loadContent from './functions/loadLocalStorage';
+import Project from './classes/project';
+import saveToLocalStorage from './functions/saveLocalStorage';
 import createProject from './dom/createProject';
 import createProjectForm from './dom/createProjectForm';
 import hideProjectForm from './dom/hideProjectForm';
 import createTodoForm from './dom/createTodoForm';
-import Todo from './js/classes/todo';
+import Todo from './classes/todo';
 import toggleSidebar from './dom/toggleSidebar';
 import clickOffSidebar from './dom/clickOffSidebar';
 import cardDragStart from './dom/cardDragStart';
-import cardDrop from './dom/cardDrop';
+import changeTodoProject from './functions/changeTodoProject';
 
 const addProjectBtn = document.querySelector('.add-project-button');
 const addProjectForm = document.querySelector('.add-project');
 const projectNameInput = document.querySelector('.project-input');
 
-const projectBoard = new ProjectBoard(); // TODO i dont like this
+const projectBoard = new ProjectBoard();
 // if (localStorage.getItem('Project')) loadContent(projectBoard);
 
 document.addEventListener('click', clickOffSidebar);
 addProjectBtn.addEventListener('click', createProjectForm);
+projectNameInput.addEventListener('blur', () => {
+  if (!projectNameInput.value) hideProjectForm();
+});
 
 addProjectForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -32,6 +35,16 @@ addProjectForm.addEventListener('submit', (e) => {
   projectBoard.addProject(project);
   const projectSection = createProject(project);
 
+  // Dragging todos to different projects
+  projectSection.addEventListener('dragstart', cardDragStart);
+  projectSection.addEventListener('dragover', (e) => e.preventDefault());
+  projectSection.addEventListener('dragenter', (e) => e.preventDefault());
+  projectSection.addEventListener('drop', (e) => {
+    changeTodoProject(e, project, projectBoard);
+    saveToLocalStorage(projectBoard);
+  });
+
+  // Deleting a project
   const deleteBtn = document.querySelector(`#${project.id}.delete`);
   deleteBtn.addEventListener('click', () => {
     projectSection.remove();
@@ -39,6 +52,7 @@ addProjectForm.addEventListener('submit', (e) => {
     saveToLocalStorage(projectBoard);
   });
 
+  // creating a new todo
   const newTodoBtn = document.querySelector(`#${project.id}.section>.new`);
   newTodoBtn.addEventListener('click', () => {
     const todoForm = createTodoForm(project);
@@ -57,25 +71,21 @@ addProjectForm.addEventListener('submit', (e) => {
       todoInput.blur();
 
       todoInput.addEventListener('input', () => todo.setTitle(todoInput));
+      // clicking on card will open it unless you click the done section
       card.addEventListener('click', (e) => {
         if (e.target.className !== 'done') toggleSidebar(todo);
       });
 
+      // clicking done section will remove the todo from the board
       isDone.addEventListener('click', () => {
         todo.toggleDone();
         card.remove();
         saveToLocalStorage(projectBoard);
       });
     });
+
     todoInput.addEventListener('blur', () => {
       if (!todoInput.value) card.remove();
-    });
-
-    card.addEventListener('dragstart', cardDragStart);
-    card.addEventListener('dragover', (e) => e.preventDefault());
-    card.addEventListener('dragenter', (e) => e.preventDefault());
-    card.addEventListener('drop', (e) => {
-      const cardData = cardDrop(e);
     });
   });
 
