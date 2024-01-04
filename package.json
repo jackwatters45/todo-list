@@ -34,5 +34,8 @@
     "webpack-dev-server": "^4.10.1",
     "webpack-merge": "^5.8.0"
   },
-  "Dependencies": {}
+  "Dependencies": {},
+  "dependencies": {
+    "firebase": "^9.17.1"
+  }
 }
